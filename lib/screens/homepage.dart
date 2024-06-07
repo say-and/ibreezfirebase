@@ -12,10 +12,10 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.orangeAccent,
-      body: Column(
+      body: Column(mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Text(textAlign: TextAlign.center,
+            child: Text(
               "WELCOME",
               style: TextStyle(color: Colors.black, fontSize: 40),
             ),
