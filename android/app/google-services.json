@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "229705098209",
+    "project_id": "ibreezfb",
+    "storage_bucket": "ibreezfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229705098209:android:8f7ae23004187ef7a768a0",
+        "android_client_info": {
+          "package_name": "com.example.ibreezfb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAb8rZ2IWUtmAlqavRie7PysqFxuvMnEs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
