@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../model/user_model.dart';
 import '../screens/homepage.dart';
 
-class FirebaseService {
+class FirebaseServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 

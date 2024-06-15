@@ -55,8 +55,10 @@ class _PhoneAuthState extends State<PhoneAuth> {
                   verificationFailed: (FirebaseAuthException e) {},
                   codeSent: (String verificationId, int? resendToken) {
                     PhoneAuth.verify = verificationId;
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const OtpScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const OtpScreen()));
                   },
                   codeAutoRetrievalTimeout: (String verificationId) {});
             },

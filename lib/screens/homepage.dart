@@ -12,7 +12,8 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.orangeAccent,
-      body: Column(mainAxisAlignment: MainAxisAlignment.center,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
             child: Text(

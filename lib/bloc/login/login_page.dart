@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ibreezfb/firebase_service/firebase_service.dart';
-import 'package:ibreezfb/screens/signup_page.dart';
+import 'package:ibreezfb/bloc/registration/signup_page.dart';
+import '../../screens/homepage.dart';
+import 'login_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,7 +15,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  FirebaseService firebaseServices = FirebaseService();
+  FirebaseServices firebaseServices = FirebaseServices();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -74,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                                   borderRadius: BorderRadius.circular(30))),
                           validator: (value) {
                             final emailRegExp =
-                                RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                                RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$');
                             if (value == null || value.isEmpty) {
                               return 'Please enter your email';
                             }
@@ -138,7 +140,22 @@ class _LoginPageState extends State<LoginPage> {
               height: 50,
             ),
             Center(
-              child: ElevatedButton(
+              child: BlocConsumer<LoginBloc, LoginState>(
+  listener: (context, state) {
+    if (state is LoginFailure) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(state.error)),
+      );
+    } else if (state is LoginSuccess) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Homepage()),
+      );
+    }
+
+  },
+  builder: (context, state) {
+    return ElevatedButton(
                 onPressed: () {
                   final email = _emailController.text.trim();
                   final password = _passwordController.text.trim();
@@ -163,7 +180,9 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.white,
                   ),
                 ),
-              ),
+              );
+  },
+),
             ),
             SizedBox(height: w * 0.2),
             Row(
@@ -177,7 +196,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () => Get.to(() => const SignUpPage()),
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpPage())),
                   child: const Text(
                     "Create",
                     style: TextStyle(
